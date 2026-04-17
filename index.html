@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Talha Ishtiaq | Shopify & WordPress Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--bg:#09090f;--bg2:#111119;--card:#15151e;
+--text:#f0f0f5;--muted:#8080aa;
+--a:#6366f1;--a2:#a78bfa;--a3:#38bdf8;
+--glow:rgba(99,102,241,.18);
+--border:rgba(255,255,255,.06);--borderA:rgba(99,102,241,.35)
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:'Syne',sans-serif}
+::selection{background:var(--a);color:#fff}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-thumb{background:var(--a);border-radius:2px}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.1rem 2rem;display:flex;align-items:center;justify-content:space-between;transition:all .3s;border-bottom:1px solid transparent}
+nav.scrolled{background:rgba(9,9,15,.88);backdrop-filter:blur(20px);border-color:var(--border)}
+.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;text-decoration:none;background:linear-gradient(135deg,var(--a),var(--a2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.88rem;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--a)}
+.theme-btn{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:.45rem .6rem;cursor:pointer;color:var(--text);font-size:.9rem;transition:all .2s}
+.theme-btn:hover{border-color:var(--a)}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;align-items:center;padding:0 2rem;position:relative;overflow:hidden}
+.blob1{position:absolute;top:5%;left:-15%;width:550px;height:550px;border-radius:50%;background:radial-gradient(circle,rgba(99,102,241,.13) 0%,transparent 70%);pointer-events:none}
+.blob2{position:absolute;bottom:0;right:-10%;width:450px;height:450px;border-radius:50%;background:radial-gradient(circle,rgba(167,139,250,.1) 0%,transparent 70%);pointer-events:none}
+.hero-inner{max-width:900px;margin:0 auto;width:100%;padding-top:5rem}
+.badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.25);border-radius:100px;padding:.35rem 1rem;margin-bottom:1.75rem;animation:fadeUp .6s ease both}
+.badge span{font-size:.78rem;color:var(--a);font-weight:500}
+.dot-pulse{width:7px;height:7px;border-radius:50%;background:var(--a);animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(99,102,241,.5)}50%{box-shadow:0 0 0 5px rgba(99,102,241,0)}}
+.hero-name{font-size:clamp(2.8rem,7vw,5.2rem);font-weight:800;line-height:1.05;letter-spacing:-.03em;margin-bottom:1.2rem;animation:fadeUp .7s .1s ease both}
+.grad{background:linear-gradient(135deg,var(--a) 0%,var(--a2) 50%,var(--a3) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-typing{font-family:'Syne',sans-serif;font-size:clamp(1.3rem,3vw,2rem);font-weight:600;color:var(--muted);margin-bottom:1.25rem;animation:fadeUp .7s .2s ease both}
+.hero-typing .typed{color:var(--a)}
+.cursor{display:inline-block;width:2px;height:1.2em;background:var(--a);margin-left:2px;vertical-align:text-bottom;animation:blink .7s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.hero-p{color:var(--muted);font-size:1rem;line-height:1.85;max-width:540px;margin-bottom:2.25rem;font-weight:300;animation:fadeUp .7s .3s ease both}
+.btns{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeUp .7s .4s ease both}
+.btn-p{background:linear-gradient(135deg,var(--a),var(--a2));color:#fff;border:none;padding:.75rem 1.8rem;border-radius:12px;font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;transition:all .3s}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 10px 30px var(--glow)}
+.btn-o{background:transparent;color:var(--text);border:1px solid var(--borderA);padding:.75rem 1.8rem;border-radius:12px;font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;transition:all .3s}
+.btn-o:hover{border-color:var(--a);background:var(--glow);transform:translateY(-2px)}
+.stats{display:flex;gap:2.5rem;margin-top:3.5rem;animation:fadeUp .7s .5s ease both}
+.stat-num{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--a)}
+.stat-lbl{font-size:.82rem;color:var(--muted)}
+.scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.4rem;color:var(--muted);font-size:.75rem;text-decoration:none;animation:bob 2s infinite}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+/* SECTIONS */
+section{padding:5.5rem 2rem}
+.sec-wrap{max-width:960px;margin:0 auto}
+.sec-label{font-size:.72rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--a);display:flex;align-items:center;gap:.6rem;margin-bottom:.8rem}
+.sec-label::before{content:'';width:1.75rem;height:1px;background:var(--a)}
+.sec-h{font-size:clamp(1.9rem,4vw,2.8rem);font-weight:800;line-height:1.1;margin-bottom:2.5rem}
+.alt-bg{background:var(--bg2)}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:center}
+.about-cards{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.acard{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:1.25rem;transition:all .3s}
+.acard:hover{border-color:var(--borderA);transform:translateY(-3px);box-shadow:0 15px 40px var(--glow)}
+.acard-icon{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--a),var(--a2));display:flex;align-items:center;justify-content:center;margin-bottom:.8rem;font-size:1rem}
+.acard h4{font-family:'Syne',sans-serif;font-weight:700;font-size:.92rem;margin-bottom:.3rem}
+.acard p{font-size:.8rem;color:var(--muted);line-height:1.6;font-weight:300}
+
+/* SKILLS */
+.skill-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem}
+.skill-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:1.5rem;transition:all .3s}
+.skill-card:hover{border-color:var(--borderA);transform:translateY(-3px);box-shadow:0 15px 40px var(--glow)}
+.skill-cat{display:flex;align-items:center;gap:.6rem;margin-bottom:1.25rem}
+.skill-dot{width:9px;height:9px;border-radius:50%}
+.skill-cat h3{font-family:'Syne',sans-serif;font-weight:700;font-size:.95rem}
+.skill-item{margin-bottom:.9rem}
+.skill-row{display:flex;justify-content:space-between;margin-bottom:.35rem;font-size:.82rem}
+.skill-pct{color:var(--muted)}
+.bar-bg{height:5px;background:var(--border);border-radius:100px;overflow:hidden}
+.bar-fill{height:100%;border-radius:100px;transition:width 1.5s cubic-bezier(.22,1,.36,1)}
+.tools-wrap{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.5rem}
+.tool-tag{font-size:.75rem;font-weight:600;padding:.3rem .9rem;border-radius:100px;background:rgba(99,102,241,.09);border:1px solid rgba(99,102,241,.22);color:var(--a)}
+
+/* EXPERIENCE */
+.timeline{position:relative;padding-left:1.75rem}
+.timeline::before{content:'';position:absolute;left:0;top:20px;bottom:20px;width:1px;background:linear-gradient(to bottom,var(--a),transparent)}
+.titem{position:relative;margin-bottom:1.75rem}
+.titem::before{content:'';position:absolute;left:-1.95rem;top:1.2rem;width:11px;height:11px;border-radius:50%;background:var(--a);border:2px solid var(--bg);box-shadow:0 0 0 3px rgba(99,102,241,.2)}
+.tcard{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:1.5rem;transition:all .3s}
+.tcard:hover{border-color:var(--borderA);box-shadow:0 15px 40px var(--glow)}
+.t-head{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:.75rem;margin-bottom:1rem}
+.t-role{font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem;margin-bottom:.2rem}
+.t-co{font-size:.85rem;color:var(--a);font-weight:600}
+.t-meta{display:flex;flex-direction:column;align-items:flex-end;gap:.3rem}
+.t-period{font-size:.78rem;color:var(--muted)}
+.t-badge{font-size:.72rem;font-weight:700;padding:.2rem .7rem;border-radius:100px;background:rgba(99,102,241,.1);color:var(--a);border:1px solid rgba(99,102,241,.2)}
+.t-pts{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+.t-pts li{display:flex;gap:.6rem;align-items:flex-start;font-size:.85rem;color:var(--muted);line-height:1.65;font-weight:300}
+.t-pts li::before{content:'◆';color:var(--a);font-size:.5rem;margin-top:.45rem;flex-shrink:0}
+
+/* PROJECTS */
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(285px,1fr));gap:1.25rem}
+.pcard{background:var(--card);border:1px solid var(--border);border-radius:18px;overflow:hidden;transition:all .35s}
+.pcard:hover{border-color:var(--borderA);transform:translateY(-5px)}
+.p-thumb{height:145px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.p-thumb-text{font-family:'Syne',sans-serif;font-size:3rem;font-weight:800;color:rgba(255,255,255,.12);letter-spacing:-.05em;position:relative;z-index:1}
+.p-thumb-circle{position:absolute;bottom:-25px;right:-25px;width:100px;height:100px;border-radius:50%;background:rgba(255,255,255,.06)}
+.p-body{padding:1.4rem}
+.p-title{font-family:'Syne',sans-serif;font-weight:700;font-size:.97rem;margin-bottom:.5rem}
+.p-desc{font-size:.82rem;color:var(--muted);line-height:1.7;margin-bottom:.9rem;font-weight:300}
+.p-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.1rem}
+.p-tag{font-size:.7rem;font-weight:700;padding:.22rem .65rem;border-radius:100px}
+.p-links{display:flex;gap:.6rem}
+.p-link{display:inline-flex;align-items:center;gap:.35rem;font-size:.78rem;font-weight:700;text-decoration:none;padding:.35rem .9rem;border-radius:8px;transition:all .2s}
+.p-link.demo{color:var(--a);background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.2)}
+.p-link.demo:hover{background:rgba(99,102,241,.2)}
+.p-link.gh{color:var(--muted);background:var(--border);border:1px solid var(--border)}
+.p-link.gh:hover{color:var(--text)}
+
+/* SERVICES */
+.srv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(275px,1fr));gap:1.25rem}
+.scard{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:1.5rem;transition:all .3s}
+.scard:hover{border-color:var(--borderA);transform:translateY(-4px);box-shadow:0 15px 40px var(--glow)}
+.scard-icon{width:48px;height:48px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:1.1rem}
+.scard h3{font-family:'Syne',sans-serif;font-weight:700;font-size:.95rem;margin-bottom:.5rem}
+.scard p{font-size:.82rem;color:var(--muted);line-height:1.7;margin-bottom:1rem;font-weight:300}
+.scard-feats{display:flex;flex-wrap:wrap;gap:.4rem}
+.sfeat{font-size:.7rem;font-weight:500;padding:.22rem .65rem;border-radius:100px;background:var(--bg2);border:1px solid var(--border);color:var(--muted)}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:2rem}
+.c-link{display:flex;align-items:center;gap:1rem;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.1rem 1.25rem;text-decoration:none;transition:all .3s;margin-bottom:.9rem}
+.c-link:hover{border-color:var(--borderA);transform:translateX(4px);box-shadow:0 10px 30px var(--glow)}
+.c-icon{width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.c-lbl{font-size:.73rem;color:var(--muted);margin-bottom:.1rem}
+.c-val{font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;color:var(--text)}
+.c-arrow{margin-left:auto;color:var(--muted);font-size:.85rem}
+.form-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:1.75rem}
+.form-row{margin-bottom:1rem}
+.form-row label{display:block;font-size:.78rem;color:var(--muted);margin-bottom:.4rem}
+.form-row input,.form-row textarea{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:.65rem 1rem;color:var(--text);font-family:'DM Sans',sans-serif;font-size:.88rem;outline:none;transition:border .2s;resize:vertical}
+.form-row input:focus,.form-row textarea:focus{border-color:var(--a)}
+.submit-btn{width:100%;background:linear-gradient(135deg,var(--a),var(--a2));color:#fff;border:none;padding:.8rem;border-radius:12px;font-family:'Syne',sans-serif;font-weight:700;font-size:.9rem;cursor:pointer;transition:all .3s;display:flex;align-items:center;justify-content:center;gap:.5rem}
+.submit-btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px var(--glow)}
+
+/* FOOTER */
+footer{padding:1.75rem 2rem;border-top:1px solid var(--border);text-align:center;font-size:.8rem;color:var(--muted)}
+footer span{color:var(--a);font-weight:600}
+
+/* LIGHT MODE */
+body.light{--bg:#f7f7fc;--bg2:#eeeff8;--card:#fff;--text:#0d0d1a;--muted:#6666aa;--border:rgba(0,0,0,.07);--borderA:rgba(99,102,241,.3);--glow:rgba(99,102,241,.08);--a:#4f46e5;--a2:#7c3aed;--a3:#0284c7}
+
+@media(max-width:768px){
+.about-grid{grid-template-columns:1fr}
+.contact-grid{grid-template-columns:1fr}
+.nav-links{display:none}
+.stats{flex-wrap:wrap;gap:1.5rem}
+}
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <a href="#hero" class="logo">T.I <small style="font-size:.65rem;color:var(--muted);font-family:'DM Sans';font-weight:400">dev</small></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
+</nav>
+
+<section id="hero">
+  <div class="blob1"></div>
+  <div class="blob2"></div>
+  <div class="hero-inner">
+    <div class="badge"><div class="dot-pulse"></div><span>Available for new projects</span></div>
+    <h1 class="hero-name">Hi, I'm <span class="grad">Talha Ishtiaq</span></h1>
+    <div class="hero-typing">Expert in <span class="typed" id="typed"></span><span class="cursor"></span></div>
+    <p class="hero-p">I build high-performance e-commerce stores and stunning WordPress websites. Turning your vision into a conversion-driven digital experience — from Shopify theme customization to full custom development.</p>
+    <div class="btns">
+      <a href="Talha_Ishtiaq_Professional_CV.pdf" download class="btn-p">⬇ Download CV</a>
+      <a href="#contact" class="btn-o">💬 Let's Talk</a>
+    </div>
+    <div class="stats">
+      <div><div class="stat-num">3+</div><div class="stat-lbl">Years Experience</div></div>
+      <div><div class="stat-num">50+</div><div class="stat-lbl">Projects Delivered</div></div>
+      <div><div class="stat-num">30+</div><div class="stat-lbl">Happy Clients</div></div>
+    </div>
+  </div>
+  <a href="#about" class="scroll-hint">↓ Scroll</a>
+</section>
+
+<section id="about">
+  <div class="sec-wrap">
+    <div class="sec-label">About Me</div>
+    <h2 class="sec-h">Crafting digital experiences<br><span class="grad">that drive results</span></h2>
+    <div class="about-grid">
+      <div>
+        <p style="color:var(--muted);line-height:1.9;font-size:.98rem;font-weight:300;margin-bottom:1.25rem">I'm <strong style="color:var(--text);font-weight:600">Talha Ishtiaq</strong>, a passionate Shopify & WordPress developer at <strong style="color:var(--a)">Software Pro</strong>. I specialize in building fast, beautiful, and conversion-focused online stores and websites.</p>
+        <p style="color:var(--muted);line-height:1.9;font-size:.98rem;font-weight:300">With hands-on expertise in Liquid, Elementor, HTML, CSS, and JavaScript, I deliver solutions that not only look great but also perform at the highest level.</p>
+      </div>
+      <div class="about-cards">
+        <div class="acard"><div class="acard-icon">🛍️</div><h4>Shopify Expert</h4><p>Theme customization, Liquid templating & custom storefronts</p></div>
+        <div class="acard"><div class="acard-icon">🌐</div><h4>WordPress Pro</h4><p>Elementor, WooCommerce, custom themes & plugins</p></div>
+        <div class="acard"><div class="acard-icon">💻</div><h4>Clean Code</h4><p>Semantic HTML, modern CSS & maintainable codebases</p></div>
+        <div class="acard"><div class="acard-icon">⚡</div><h4>Fast Delivery</h4><p>Efficient workflows & on-time delivery guaranteed</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills" class="alt-bg">
+  <div class="sec-wrap">
+    <div class="sec-label">My Skills</div>
+    <h2 class="sec-h">Technical <span class="grad">Expertise</span></h2>
+    <div class="skill-grid">
+      <div class="skill-card">
+        <div class="skill-cat"><div class="skill-dot" style="background:#6366f1"></div><h3>E-Commerce</h3></div>
+        <div class="skill-item"><div class="skill-row"><span>Shopify</span><span class="skill-pct">95%</span></div><div class="bar-bg"><div class="bar-fill" data-w="95" style="background:linear-gradient(90deg,#6366f1,#6366f188)"></div></div></div>
+        <div class="skill-item"><div class="skill-row"><span>Liquid Templating</span><span class="skill-pct">90%</span></div><div class="bar-bg"><div class="bar-fill" data-w="90" style="background:linear-gradient(90deg,#6366f1,#6366f188)"></div></div></div>
+        <div class="skill-item"><div class="skill-row"><span>Shopify Apps</span><span class="skill-pct">85%</span></div><div class="bar-bg"><div class="bar-fill" data-w="85" style="background:linear-gradient(90deg,#6366f1,#6366f188)"></div></div></div>
+        <div class="skill-item"><div class="skill-row"><span>WooCommerce</span><span class="skill-pct">88%</span></div><div class="bar-bg"><div class="bar-fill" data-w="88" style="background:linear-gradient(90deg,#6366f1,#6366f188)"></div></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-cat"><div class="skill-dot" style="background:#a78bfa"></div><h3>CMS & Design</h3></div>
+        <div class="skill-item"><div class="skill-row"><span>WordPress</span><span class="skill-pct">95%</span></div><div class="bar-bg"><div class="bar-fill" data-w="95" style="background:linear-gradient(90deg,#a78bfa,#a78bfa88)"></div></div></div>
+        <div class="skill-item"><div class="skill-row"><span>Elementor</span><span class="skill-pct">92%</span></div><div class="bar-bg"><div class="bar-fill" data-w="92" style="background:linear-gradient(90deg,#a78bfa,#a78bfa88)"></div></div></div>
+        <div class="skill-item"><div class="skill-row"><span>Theme Development</span><span class="skill-pct">87%</span></div><div class="bar-bg"><div class="bar-fill" data-w="87" style="background:linear-gradient(90deg,#a78bfa,#a78bfa88)"></div></div></div>
+        <div class="skill-item"><div class="skill-row"><span>Gutenberg</span><span class="skill-pct">80%</span></div><div class="bar-bg"><div class="bar-fill" data-w="80" style="background:linear-gradient(90deg,#a78bfa,#a78bfa88)"></div></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-cat"><div class="skill-dot" style="background:#38bdf8"></div><h3>Frontend</h3></div>
+        <div class="skill-item"><div class="skill-row"><span>HTML5</span><span class="skill-pct">98%</span></div><div class="bar-bg"><div class="bar-fill" data-w="98" style="background:linear-gradient(90deg,#38bdf8,#38bdf888)"></div></div></div>
+        <div class="skill-item"><div class="skill-row"><span>CSS3 / SCSS</span><span class="skill-pct">92%</span></div><div class="bar-bg"><div class="bar-fill" data-w="92" style="background:linear-gradient(90deg,#38bdf8,#38bdf888)"></div></div></div>
+        <div class="skill-item"><div class="skill-row"><span>JavaScript</span><span class="skill-pct">80%</span></div><div class="bar-bg"><div class="bar-fill" data-w="80" style="background:linear-gradient(90deg,#38bdf8,#38bdf888)"></div></div></div>
+        <div class="skill-item"><div class="skill-row"><span>Responsive Design</span><span class="skill-pct">95%</span></div><div class="bar-bg"><div class="bar-fill" data-w="95" style="background:linear-gradient(90deg,#38bdf8,#38bdf888)"></div></div></div>
+      </div>
+    </div>
+    <div class="tools-wrap" style="margin-top:1.5rem">
+      <span class="tool-tag">Git & GitHub</span><span class="tool-tag">Figma</span><span class="tool-tag">VS Code</span><span class="tool-tag">Shopify CLI</span><span class="tool-tag">WP-CLI</span><span class="tool-tag">Chrome DevTools</span><span class="tool-tag">Postman</span><span class="tool-tag">Slack</span>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="sec-wrap">
+    <div class="sec-label">Experience</div>
+    <h2 class="sec-h">Work <span class="grad">History</span></h2>
+    <div class="timeline">
+      <div class="titem">
+        <div class="tcard">
+          <div class="t-head">
+            <div><div class="t-role">Shopify & WordPress Developer</div><div class="t-co">🏢 Software Pro</div></div>
+            <div class="t-meta"><span class="t-period">📅 2022 — Present</span><span class="t-badge">Full-time</span></div>
+          </div>
+          <ul class="t-pts">
+            <li>Developed 30+ custom Shopify stores with Liquid templating and theme customization</li>
+            <li>Built WordPress sites with Elementor, WooCommerce integrations and custom plugins</li>
+            <li>Improved page load speed by 40% through performance optimization techniques</li>
+            <li>Collaborated with design teams to implement pixel-perfect UI from Figma mockups</li>
+          </ul>
+        </div>
+      </div>
+      <div class="titem">
+        <div class="tcard">
+          <div class="t-head">
+            <div><div class="t-role">Freelance Web Developer</div><div class="t-co">💼 Self-employed</div></div>
+            <div class="t-meta"><span class="t-period">📅 2021 — 2022</span><span class="t-badge">Freelance</span></div>
+          </div>
+          <ul class="t-pts">
+            <li>Delivered e-commerce solutions for clients across fashion, health & lifestyle niches</li>
+            <li>Customized Shopify themes and configured payment gateways & shipping solutions</li>
+            <li>Created responsive WordPress landing pages with high conversion rates</li>
+            <li>Integrated Klaviyo, Mailchimp, Google Analytics & Meta Pixel</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="alt-bg">
+  <div class="sec-wrap">
+    <div class="sec-label">Portfolio</div>
+    <h2 class="sec-h">Featured <span class="grad">Projects</span></h2>
+    <div class="proj-grid">
+      <div class="pcard">
+        <div class="p-thumb" style="background:linear-gradient(135deg,#6366f1,#a78bfa)"><div class="p-thumb-text">LuxeWear</div><div class="p-thumb-circle"></div></div>
+        <div class="p-body">
+          <div class="p-title">LuxeWear Shopify Store</div>
+          <div class="p-desc">Premium fashion e-commerce with custom Liquid templates, AJAX cart & Klaviyo integration.</div>
+          <div class="p-tags"><span class="p-tag" style="background:rgba(99,102,241,.12);color:#6366f1;border:1px solid rgba(99,102,241,.25)">Shopify</span><span class="p-tag" style="background:rgba(99,102,241,.12);color:#6366f1;border:1px solid rgba(99,102,241,.25)">Liquid</span><span class="p-tag" style="background:rgba(99,102,241,.12);color:#6366f1;border:1px solid rgba(99,102,241,.25)">Klaviyo</span></div>
+          <div class="p-links"><a href="#" class="p-link demo">↗ Live Demo</a><a href="#" class="p-link gh">⌥ Code</a></div>
+        </div>
+      </div>
+      <div class="pcard">
+        <div class="p-thumb" style="background:linear-gradient(135deg,#a78bfa,#38bdf8)"><div class="p-thumb-text">FitLife</div><div class="p-thumb-circle"></div></div>
+        <div class="p-body">
+          <div class="p-title">FitLife WordPress Blog</div>
+          <div class="p-desc">High-performance fitness blog with WooCommerce shop, membership system & 90+ SEO score.</div>
+          <div class="p-tags"><span class="p-tag" style="background:rgba(167,139,250,.12);color:#a78bfa;border:1px solid rgba(167,139,250,.25)">WordPress</span><span class="p-tag" style="background:rgba(167,139,250,.12);color:#a78bfa;border:1px solid rgba(167,139,250,.25)">Elementor</span><span class="p-tag" style="background:rgba(167,139,250,.12);color:#a78bfa;border:1px solid rgba(167,139,250,.25)">SEO</span></div>
+          <div class="p-links"><a href="#" class="p-link demo">↗ Live Demo</a><a href="#" class="p-link gh">⌥ Code</a></div>
+        </div>
+      </div>
+      <div class="pcard">
+        <div class="p-thumb" style="background:linear-gradient(135deg,#38bdf8,#6366f1)"><div class="p-thumb-text">Organica</div><div class="p-thumb-circle"></div></div>
+        <div class="p-body">
+          <div class="p-title">Organica Shopify Theme</div>
+          <div class="p-desc">Custom Shopify 2.0 theme for organic beauty brand. App blocks, metafields & 95+ performance.</div>
+          <div class="p-tags"><span class="p-tag" style="background:rgba(56,189,248,.12);color:#38bdf8;border:1px solid rgba(56,189,248,.25)">Shopify 2.0</span><span class="p-tag" style="background:rgba(56,189,248,.12);color:#38bdf8;border:1px solid rgba(56,189,248,.25)">Liquid</span><span class="p-tag" style="background:rgba(56,189,248,.12);color:#38bdf8;border:1px solid rgba(56,189,248,.25)">Custom Theme</span></div>
+          <div class="p-links"><a href="#" class="p-link demo">↗ Live Demo</a><a href="#" class="p-link gh">⌥ Code</a></div>
+        </div>
+      </div>
+      <div class="pcard">
+        <div class="p-thumb" style="background:linear-gradient(135deg,#f59e0b,#6366f1)"><div class="p-thumb-text">AgencyPro</div><div class="p-thumb-circle"></div></div>
+        <div class="p-body">
+          <div class="p-title">AgencyPro WordPress Site</div>
+          <div class="p-desc">Full agency site with Elementor Pro, custom post types, animations & Google Maps integration.</div>
+          <div class="p-tags"><span class="p-tag" style="background:rgba(245,158,11,.12);color:#f59e0b;border:1px solid rgba(245,158,11,.25)">WordPress</span><span class="p-tag" style="background:rgba(245,158,11,.12);color:#f59e0b;border:1px solid rgba(245,158,11,.25)">Elementor Pro</span><span class="p-tag" style="background:rgba(245,158,11,.12);color:#f59e0b;border:1px solid rgba(245,158,11,.25)">JS</span></div>
+          <div class="p-links"><a href="#" class="p-link demo">↗ Live Demo</a><a href="#" class="p-link gh">⌥ Code</a></div>
+        </div>
+      </div>
+      <div class="pcard">
+        <div class="p-thumb" style="background:linear-gradient(135deg,#10b981,#38bdf8)"><div class="p-thumb-text">TechStore</div><div class="p-thumb-circle"></div></div>
+        <div class="p-body">
+          <div class="p-title">TechStore Dropship</div>
+          <div class="p-desc">Tech accessories dropshipping store with DSers integration, upsell funnels & Meta Pixel.</div>
+          <div class="p-tags"><span class="p-tag" style="background:rgba(16,185,129,.12);color:#10b981;border:1px solid rgba(16,185,129,.25)">Shopify</span><span class="p-tag" style="background:rgba(16,185,129,.12);color:#10b981;border:1px solid rgba(16,185,129,.25)">DSers</span><span class="p-tag" style="background:rgba(16,185,129,.12);color:#10b981;border:1px solid rgba(16,185,129,.25)">Meta Pixel</span></div>
+          <div class="p-links"><a href="#" class="p-link demo">↗ Live Demo</a><a href="#" class="p-link gh">⌥ Code</a></div>
+        </div>
+      </div>
+      <div class="pcard">
+        <div class="p-thumb" style="background:linear-gradient(135deg,#f43f5e,#a78bfa)"><div class="p-thumb-text">Restaurant</div><div class="p-thumb-circle"></div></div>
+        <div class="p-body">
+          <div class="p-title">RestaurantPro Website</div>
+          <div class="p-desc">Modern restaurant site with online reservations, custom menu builder & delivery integration.</div>
+          <div class="p-tags"><span class="p-tag" style="background:rgba(244,63,94,.12);color:#f43f5e;border:1px solid rgba(244,63,94,.25)">WordPress</span><span class="p-tag" style="background:rgba(244,63,94,.12);color:#f43f5e;border:1px solid rgba(244,63,94,.25)">Custom Theme</span><span class="p-tag" style="background:rgba(244,63,94,.12);color:#f43f5e;border:1px solid rgba(244,63,94,.25)">ADA</span></div>
+          <div class="p-links"><a href="#" class="p-link demo">↗ Live Demo</a><a href="#" class="p-link gh">⌥ Code</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="sec-wrap">
+    <div class="sec-label">Services</div>
+    <h2 class="sec-h">What I <span class="grad">Offer</span></h2>
+    <div class="srv-grid">
+      <div class="scard"><div class="scard-icon" style="background:linear-gradient(135deg,#6366f1,#a78bfa)">🛍️</div><h3>Shopify Development</h3><p>Custom Shopify stores, theme development, Liquid templating, app integration & complete store setup.</p><div class="scard-feats"><span class="sfeat">Custom Theme</span><span class="sfeat">Liquid</span><span class="sfeat">App Integration</span></div></div>
+      <div class="scard"><div class="scard-icon" style="background:linear-gradient(135deg,#a78bfa,#38bdf8)">🌐</div><h3>WordPress Development</h3><p>Professional WordPress sites with Elementor, custom themes, WooCommerce & full CMS integration.</p><div class="scard-feats"><span class="sfeat">Elementor Pro</span><span class="sfeat">WooCommerce</span><span class="sfeat">Plugins</span></div></div>
+      <div class="scard"><div class="scard-icon" style="background:linear-gradient(135deg,#38bdf8,#6366f1)">🎨</div><h3>UI/UX Implementation</h3><p>Pixel-perfect Figma to code conversion with smooth animations & cross-browser compatibility.</p><div class="scard-feats"><span class="sfeat">Figma to Code</span><span class="sfeat">Animations</span><span class="sfeat">Responsive</span></div></div>
+      <div class="scard"><div class="scard-icon" style="background:linear-gradient(135deg,#10b981,#38bdf8)">⚡</div><h3>Performance Optimization</h3><p>Speed up your store or website. Achieve 90+ Google PageSpeed with expert optimization.</p><div class="scard-feats"><span class="sfeat">Core Web Vitals</span><span class="sfeat">CDN Setup</span><span class="sfeat">Image Opt</span></div></div>
+      <div class="scard"><div class="scard-icon" style="background:linear-gradient(135deg,#f59e0b,#6366f1)">🔧</div><h3>Store Customization</h3><p>Modifications to existing stores — new features, redesigns, bug fixes & ongoing maintenance.</p><div class="scard-feats"><span class="sfeat">Bug Fixes</span><span class="sfeat">New Features</span><span class="sfeat">Maintenance</span></div></div>
+      <div class="scard"><div class="scard-icon" style="background:linear-gradient(135deg,#f43f5e,#a78bfa)">📈</div><h3>SEO & Analytics</h3><p>On-page SEO, Google Analytics, Meta Pixel, schema markup & conversion tracking setup.</p><div class="scard-feats"><span class="sfeat">On-Page SEO</span><span class="sfeat">Analytics</span><span class="sfeat">Meta Pixel</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="alt-bg">
+  <div class="sec-wrap">
+    <div class="sec-label">Contact</div>
+    <h2 class="sec-h">Let's <span class="grad">Work Together</span></h2>
+    <p style="color:var(--muted);margin-bottom:2rem;font-size:.98rem;font-weight:300">Have a project in mind? I'd love to hear about it. I'll get back to you within 24 hours.</p>
+    <div class="contact-grid">
+      <div>
+        <a href="mailto:talhaishtiaq417@gmail.com" class="c-link"><div class="c-icon" style="background:rgba(99,102,241,.12);border:1px solid rgba(99,102,241,.2)">📧</div><div><div class="c-lbl">Email</div><div class="c-val">talhaishtiaq417@gmail.com</div></div><div class="c-arrow">→</div></a>
+        <a href="https://wa.me/03119011632" target="_blank" class="c-link"><div class="c-icon" style="background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.2)">💬</div><div><div class="c-lbl">WhatsApp</div><div class="c-val">03119011632</div></div><div class="c-arrow">→</div></a>
+        <a href="https://www.linkedin.com/in/talha-ishtiaq-4b56a130a?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" class="c-link"><div class="c-icon" style="background:rgba(2,132,199,.12);border:1px solid rgba(2,132,199,.2)">🔗</div><div><div class="c-lbl">LinkedIn</div><div class="c-val">linkedin.com/in/talha-ishtiaq</div></div><div class="c-arrow">→</div></a>
+      </div>
+      <div class="form-card">
+        <div id="form-wrap">
+          <div class="form-row"><label>Your Name</label><input type="text" placeholder="John Doe" id="f-name"></div>
+          <div class="form-row"><label>Email Address</label><input type="email" placeholder="john@example.com" id="f-email"></div>
+          <div class="form-row"><label>Message</label><textarea rows="4" placeholder="Tell me about your project..." id="f-msg"></textarea></div>
+          <button class="submit-btn" onclick="submitForm()">✉️ Send Message</button>
+        </div>
+        <div id="form-success" style="display:none;text-align:center;padding:2rem 0">
+          <div style="font-size:3rem;margin-bottom:1rem">🎉</div>
+          <h3 style="font-family:'Syne',sans-serif;font-weight:700;margin-bottom:.5rem">Message Sent!</h3>
+          <p style="color:var(--muted);font-size:.9rem">Thanks for reaching out. I'll get back to you soon!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Built with ❤️ by <span>Talha Ishtiaq</span> &copy; <span id="yr"></span></p>
+</footer>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+// Navbar scroll
+window.addEventListener('scroll',()=>{
+  document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>20)
+});
+
+// Theme toggle
+let dark=true;
+function toggleTheme(){
+  dark=!dark;
+  document.body.classList.toggle('light',!dark);
+  document.getElementById('themeBtn').textContent=dark?'🌙':'☀️';
+}
+
+// Typing animation
+const words=['Shopify Development','WordPress & Elementor','Liquid Templating','E-Commerce Solutions','Custom Web Dev'];
+let wi=0,ci=0,del=false;
+const el=document.getElementById('typed');
+function type(){
+  const w=words[wi];
+  if(!del){
+    el.textContent=w.slice(0,ci+1);ci++;
+    if(ci===w.length){del=true;setTimeout(type,1800);return}
+  }else{
+    el.textContent=w.slice(0,ci-1);ci--;
+    if(ci===0){del=false;wi=(wi+1)%words.length}
+  }
+  setTimeout(type,del?60:90);
+}
+type();
+
+// Skill bars animate on scroll
+const bars=document.querySelectorAll('.bar-fill');
+bars.forEach(b=>b.style.width='0');
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.querySelectorAll('.bar-fill').forEach(b=>{b.style.width=b.dataset.w+'%'});
+      obs.unobserve(e.target);
+    }
+  });
+},{threshold:.3});
+document.querySelectorAll('.skill-card').forEach(c=>obs.observe(c));
+
+// Fade-in on scroll
+const fobs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';fobs.unobserve(e.target)}
+  });
+},{threshold:.1});
+document.querySelectorAll('.acard,.pcard,.scard,.tcard,.c-link,.skill-card').forEach(el=>{
+  el.style.opacity='0';el.style.transform='translateY(24px)';el.style.transition='opacity .6s ease, transform .6s ease';
+  fobs.observe(el);
+});
+
+// Form submit
+function submitForm(){
+  const n=document.getElementById('f-name').value;
+  const e=document.getElementById('f-email').value;
+  const m=document.getElementById('f-msg').value;
+  if(!n||!e||!m){alert('Please fill all fields.');return}
+  document.getElementById('form-wrap').style.display='none';
+  document.getElementById('form-success').style.display='block';
+}
+</script>
+</body>
+</html>
